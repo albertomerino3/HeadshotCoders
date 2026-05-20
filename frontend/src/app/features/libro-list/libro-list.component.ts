@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { LibroService } from '../../core/services/libro.service';
+import { LibroService } from '../../../core/services/libro.service';
 import { Libro } from '../../shared/models/libro.model';
 
 @Component({
