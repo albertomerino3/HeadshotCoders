@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BibliotecaService } from '../../core/services/biblioteca.service';
+import { BibliotecaService } from '../../../core/services/biblioteca.service';
 import { Autor } from '../../shared/models/biblioteca.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { Autor } from '../../shared/models/biblioteca.model';
   templateUrl: './lista-libros.html',
   styleUrl: './lista-libros.css',
 })
-export class ListaLibros {
+export class ListaLibros implements OnInit {
   private bibliotecaService = inject(BibliotecaService);
 
   // Requisito obligatorio: Uso de Signals para el estado
@@ -19,10 +19,10 @@ export class ListaLibros {
   ngOnInit(): void {
     // Requisito obligatorio: Llamada a la API usando el Observable
     this.bibliotecaService.getAutores().subscribe({
-      next: (data) => {
+      next: (data: Autor[]) => {
         this.autores.set(data);
       },
-      error: (err) => console.error('Error al traer datos:', err)
+      error: (err: any) => console.error('Error al traer datos:', err)
     });
   }
 }
