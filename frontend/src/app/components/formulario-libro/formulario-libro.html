@@ -1,32 +1,39 @@
-<div class="container">
-  <h2>Añadir Nuevo Libro</h2>
-
-  <form [formGroup]="libroForm" (ngSubmit)="guardarLibro()">
-    <div class="form-group">
-      <label>Título:</label>
-      <input type="text" formControlName="titulo" class="form-control">
-      <small *ngIf="libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched" class="error">
-        El título es obligatorio (mín. 3 caracteres).
-      </small>
+<div class="container small-container">
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="badge">Catálogo</span>
+      <h2>Nuevo Libro</h2>
     </div>
 
-    <div class="form-group">
-      <label>Género:</label>
-      <input type="text" formControlName="genero" class="form-control">
+    <form [formGroup]="libroForm" (ngSubmit)="guardarLibro()">
+      <div class="form-group">
+        <label>Título del Libro</label>
+        <input type="text" formControlName="titulo" class="form-control" placeholder="Ej: La casa de los espíritus">
+        <div *ngIf="libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched" class="mensaje error">
+          El título debe tener al menos 3 caracteres.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Género Literario</label>
+        <input type="text" formControlName="genero" class="form-control" placeholder="Ej: Realismo Mágico">
+      </div>
+
+      <div class="form-group">
+        <label>Asignar Autor</label>
+        <select formControlName="autorId" class="form-control">
+          <option value="">Selecciona un autor de la lista</option>
+          <option *ngFor="let autor of autores()" [value]="autor.id">
+            {{ autor.nombre }}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" [disabled]="libroForm.invalid" class="btn">Añadir al Inventario</button>
+    </form>
+
+    <div *ngIf="mensaje()" class="mensaje success">
+      📚 {{ mensaje() }}
     </div>
-
-    <div class="form-group">
-      <label>Autor:</label>
-      <select formControlName="autorId" class="form-control">
-        <option value="">Selecciona un autor</option>
-        <option *ngFor="let autor of autores()" [value]="autor.id">
-          {{ autor.nombre }}
-        </option>
-      </select>
-    </div>
-
-    <button type="submit" [disabled]="libroForm.invalid" class="btn">Guardar Libro</button>
-  </form>
-
-  <p *ngIf="mensaje()" class="mensaje">{{ mensaje() }}</p>
+  </div>
 </div>

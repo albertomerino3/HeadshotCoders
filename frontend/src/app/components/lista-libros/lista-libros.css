@@ -1,0 +1,84 @@
+/* 
+   ESTILOS PREMIUM PARA LA LISTA DE AUTORES Y LIBROS
+*/
+
+.autores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.autor-card {
+  /* La clase glass-card ya tiene la base, aquí refinamos lo interno */
+}
+
+.autor-info {
+  margin-bottom: 2rem;
+}
+
+.autor-info h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.autor-info .nacionalidad {
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.libros-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.libro-item {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.libro-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.libro-item .titulo {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.libro-item .genero {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.no-libros {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 2rem;
+  font-size: 0.9rem;
+  background: rgba(0,0,0,0.1);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--glass-border);
+}
+
+@media (max-width: 400px) {
+  .autores-grid {
+    grid-template-columns: 1fr;
+  }
+}

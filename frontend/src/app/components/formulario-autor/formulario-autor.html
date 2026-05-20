@@ -1,22 +1,29 @@
-<div class="container">
-  <h2>Registrar Nuevo Autor</h2>
-
-  <form [formGroup]="autorForm" (ngSubmit)="guardarAutor()">
-    <div class="form-group">
-      <label>Nombre Completo:</label>
-      <input type="text" formControlName="nombre" class="form-control">
-      <small *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched" class="error">
-        El nombre es obligatorio (mín. 3 caracteres).
-      </small>
+<div class="container small-container">
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="badge">Nuevo</span>
+      <h2>Registrar Autor</h2>
     </div>
 
-    <div class="form-group">
-      <label>Nacionalidad:</label>
-      <input type="text" formControlName="nacionalidad" class="form-control">
+    <form [formGroup]="autorForm" (ngSubmit)="guardarAutor()">
+      <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" formControlName="nombre" class="form-control" placeholder="Ej: Isabel Allende">
+        <div *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched" class="mensaje error">
+          El nombre debe tener al menos 3 caracteres.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nacionalidad</label>
+        <input type="text" formControlName="nacionalidad" class="form-control" placeholder="Ej: Chilena">
+      </div>
+
+      <button type="submit" [disabled]="autorForm.invalid" class="btn">Dar de Alta Autor</button>
+    </form>
+
+    <div *ngIf="mensaje()" class="mensaje success">
+      ✨ {{ mensaje() }}
     </div>
-
-    <button type="submit" [disabled]="autorForm.invalid" class="btn">Guardar Autor</button>
-  </form>
-
-  <p *ngIf="mensaje()" class="mensaje">{{ mensaje() }}</p>
+  </div>
 </div>

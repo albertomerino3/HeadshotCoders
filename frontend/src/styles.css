@@ -1,196 +1,262 @@
-/* ==========================================================================
-   VARIABLES GLOBALES - PALETA EDITORIAL MODERNA
-   ========================================================================== */
+/* 
+   ==========================================================================
+   LIQUID GLASS PREMIUM THEME - GLOBAL STYLES
+   ========================================================================== 
+*/
+
 :root {
-  --bg-principal: #F8F9FA;      /* Gris ligerísimo para el fondo de la app */
-  --bg-tarjeta: #FFFFFF;        /* Blanco puro para tablas y formularios */
-  --color-primario: #1A2E40;    /* Azul marino profundo (Elegancia) */
-  --color-secundario: #E76F51;  /* Coral/Naranja quemado (Detalles y acciones) */
-  --color-texto: #2B2D42;       /* Gris oscuro para una lectura cómoda */
-  --color-mutado: #6C757D;      /* Gris secundario para textos pequeños o IDs */
-  --borde-sutil: #E5E5E5;       /* Gris claro para separar elementos */
-  --fuente-app: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --accent: #22d3ee;
+  --bg-deep: #030712;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+  --error: #f43f5e;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* ==========================================================================
-   ESTILOS GENERALES
-   ========================================================================== */
-body {
-  background-color: var(--bg-principal);
-  color: var(--color-texto);
-  font-family: var(--fuente-app);
+/* Reset & Base */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 
+   DYNAMIC LIQUID BACKGROUND 
+   Uses floating orbs for organic depth 
+*/
+.bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.bg-gradient::before, .bg-gradient::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  z-index: -1;
+  animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.bg-gradient::before {
+  background: var(--primary);
+  top: -100px;
+  left: -100px;
+}
+
+.bg-gradient::after {
+  background: var(--accent);
+  bottom: -100px;
+  right: -100px;
+  animation-delay: -10s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(150px, 100px) scale(1.2); }
+}
+
+/* Layout Containers */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 24px 60px;
+  animation: pageEnter 0.8s ease-out;
+}
+
+.small-container {
+  max-width: 540px;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 
+   GLASS COMPONENT SYSTEM 
+*/
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
+}
+
+/* Titles */
+/* Card Refinements */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-light);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  margin-bottom: 0.5rem;
 }
 
 h2 {
-  color: var(--color-primario);
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  margin-bottom: 24px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0; /* Adjusted for card-header */
+  letter-spacing: -0.05em;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
+.success {
+  background: rgba(34, 211, 238, 0.1) !important;
+  color: var(--accent) !important;
+  border-color: rgba(34, 211, 238, 0.2) !important;
 }
 
-/* ==========================================================================
-   TABLAS ESTILO EDITORIAL (TABLA MODERNA)
-   ========================================================================== */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--bg-tarjeta);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(26, 46, 64, 0.03); /* Sombra azulada muy sutil */
-  margin-top: 15px;
-}
-
-.table th {
-  background-color: var(--color-primario);
-  color: #FFFFFF;
-  font-weight: 600;
-  text-transform: uppercase;
+.error {
+  background: rgba(244, 63, 94, 0.1) !important;
+  color: var(--error) !important;
+  border-color: rgba(244, 63, 94, 0.2) !important;
   font-size: 0.8rem;
-  letter-spacing: 1px;
-  padding: 18px 24px;
-  text-align: left;
+  margin-top: 8px;
 }
 
-.table td {
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--borde-sutil);
-  font-size: 0.95rem;
+/* Forms Refined */
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-/* Efecto cebra minimalista */
-.table tbody tr:nth-child(even) {
-  background-color: rgba(248, 249, 250, 0.6);
-}
-
-/* Hover suave en las filas */
-.table tbody tr:hover {
-  background-color: rgba(231, 111, 81, 0.04); /* Tinte ligerísimo del coral */
-  transition: background-color 0.2s ease;
-}
-
-/* Texto mutado para el ID del Autor */
-.table td:last-child {
-  color: var(--color-mutado);
-  font-family: monospace; /* Un toque técnico para los IDs */
-}
-
-/* ==========================================================================
-   FORMULARIOS MINIMALISTAS
-   ========================================================================== */
-form {
-  background-color: var(--bg-tarjeta);
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
-  border: 1px solid var(--borde-sutil);
-}
-
-.mb-3 {
-  margin-bottom: 20px;
-}
-
-.form-label {
+label {
   display: block;
+  margin-bottom: 0.6rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--color-primario);
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
 }
 
 .form-control {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #CCCCCC;
-  border-radius: 6px;
-  background-color: #FFFFFF;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: white;
+  font-family: inherit;
   font-size: 1rem;
-  color: var(--color-texto);
-  box-sizing: border-box;
-  transition: all 0.25s ease;
+  transition: var(--transition);
 }
 
-/* Foco con personalidad moderna */
 .form-control:focus {
   outline: none;
-  border-color: var(--color-primario);
-  box-shadow: 0 0 0 3px rgba(26, 46, 64, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
-.text-danger {
-  color: #D90429;
-  font-size: 0.8rem;
-  margin-top: 6px;
-  display: block;
+select.form-control option {
+  background: #111827;
 }
 
-/* ==========================================================================
-   BOTONES CON MICRO-INTERACCIONES
-   ========================================================================== */
+/* Premium Buttons */
 .btn {
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 6px;
+  width: 100%;
+  padding: 1.1rem;
   border: none;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
-  text-decoration: none;
-  text-align: center;
+  transition: var(--transition);
+  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* Botón Añadir/Guardar (Coral) */
-.btn-primary, .btn-success {
-  background-color: var(--color-secundario);
-  color: #FFFFFF;
+.btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+  box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.5);
 }
 
-.btn-primary:hover, .btn-success:hover {
-  background-color: #D65A3D; /* Coral un poco más oscuro */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
-}
-
-/* Botón Cancelar o Secundario */
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-mutado);
-  border: 1px solid var(--borde-sutil);
-}
-
-.btn-secondary:hover {
-  background-color: var(--bg-principal);
-  color: var(--color-primario);
-  border-color: var(--color-primario);
-}
-
-/* Efecto cuando el botón está deshabilitado (Formulario inválido) */
 .btn:disabled {
-  background-color: var(--borde-sutil);
-  color: #A0A0A0;
+  opacity: 0.4;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+  filter: grayscale(1);
 }
 
-.btn:active {
-  transform: translateY(1px);
+/* Status Messages */
+.mensaje {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  animation: pageEnter 0.4s ease;
 }
 
-.ms-2 {
-  margin-left: 8px;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
-.mb-3-btn {
-  margin-bottom: 16px;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
 }

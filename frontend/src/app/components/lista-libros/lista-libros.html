@@ -1,14 +1,23 @@
 <div class="container">
-  <h2>Lista de Biblioteca (Autores y Libros)</h2>
+  <h2>Biblioteca Digital</h2>
 
-  <div *ngFor="let autor of autores()" class="autor-card">
-    <h3>{{ autor.nombre }} ({{ autor.nacionalidad }})</h3>
-    
-    <ul>
-      <li *ngFor="let libro of autor.libros">
-        <strong>{{ libro.titulo }}</strong> - {{ libro.genero }}
-      </li>
-    </ul>
-    <p *ngIf="!autor.libros?.length">No hay libros registrados para este autor.</p>
+  <div class="autores-grid">
+    <div *ngFor="let autor of autores()" class="glass-card autor-card">
+      <div class="autor-info">
+        <span class="nacionalidad">{{ autor.nacionalidad }}</span>
+        <h3>{{ autor.nombre }}</h3>
+      </div>
+      
+      <div class="libros-container">
+        <div *ngFor="let libro of autor.libros" class="libro-item">
+          <span class="titulo">{{ libro.titulo }}</span>
+          <span class="genero">{{ libro.genero }}</span>
+        </div>
+        
+        <div *ngIf="!autor.libros?.length" class="no-libros">
+          No hay libros registrados para este autor.
+        </div>
+      </div>
+    </div>
   </div>
 </div>
