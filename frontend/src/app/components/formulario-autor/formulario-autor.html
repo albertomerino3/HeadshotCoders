@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Registrar Nuevo Autor</h2>
+
+  <form [formGroup]="autorForm" (ngSubmit)="guardarAutor()">
+    <div class="form-group">
+      <label>Nombre Completo:</label>
+      <input type="text" formControlName="nombre" class="form-control">
+      <small *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched" class="error">
+        El nombre es obligatorio (mín. 3 caracteres).
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Nacionalidad:</label>
+      <input type="text" formControlName="nacionalidad" class="form-control">
+    </div>
+
+    <button type="submit" [disabled]="autorForm.invalid" class="btn">Guardar Autor</button>
+  </form>
+
+  <p *ngIf="mensaje()" class="mensaje">{{ mensaje() }}</p>
+</div>

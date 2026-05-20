@@ -27,4 +27,8 @@ export class BibliotecaService {
   createLibro(libro: Libro, autorId: number): Observable<Libro> {
     return this.http.post<Libro>(`${this.baseUrl}/libros/autor/${autorId}`, libro);
   }
+
+  createAutor(autor: Autor): Observable<Autor> {
+    return this.http.post<Autor>(`${this.baseUrl}/autores`, autor);
+  }
 }
