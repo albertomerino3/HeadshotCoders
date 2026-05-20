@@ -1,7 +1,9 @@
-/* 
-   ESTILOS PREMIUM PARA LA LISTA DE AUTORES Y LIBROS
-*/
+/**
+ * Styles for the authors and books list component.
+ * Implements a responsive grid layout with glassmorphism cards.
+ */
 
+/* Main container for the authors grid */
 .autores-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -9,14 +11,17 @@
   margin-top: 1rem;
 }
 
+/* Specific styling for the author card, extending glass-card */
 .autor-card {
   /* La clase glass-card ya tiene la base, aquí refinamos lo interno */
 }
 
+/* Header section within each author card */
 .autor-info {
   margin-bottom: 2rem;
 }
 
+/* Author name styling */
 .autor-info h3 {
   font-size: 1.5rem;
   font-weight: 800;
@@ -24,6 +29,7 @@
   margin-bottom: 0.25rem;
 }
 
+/* Author nationality badge/label */
 .autor-info .nacionalidad {
   font-size: 0.75rem;
   color: var(--accent);
@@ -32,12 +38,14 @@
   letter-spacing: 0.1em;
 }
 
+/* Container for the list of books under an author */
 .libros-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+/* Individual book item styling with hover effects */
 .libro-item {
   padding: 16px;
   background: rgba(255, 255, 255, 0.02);
@@ -49,24 +57,28 @@
   transition: all 0.3s ease;
 }
 
+/* Interactive hover effect for book items */
 .libro-item:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
   transform: translateX(4px);
 }
 
+/* Book title styling */
 .libro-item .titulo {
   font-weight: 700;
   font-size: 1rem;
   color: #fff;
 }
 
+/* Book genre styling */
 .libro-item .genero {
   font-size: 0.8rem;
   color: var(--text-dim);
   font-style: italic;
 }
 
+/* Fallback styling when no books are available for an author */
 .no-libros {
   text-align: center;
   color: var(--text-dim);
@@ -77,6 +89,7 @@
   border: 1px dashed var(--glass-border);
 }
 
+/* Responsive adjustments for mobile devices */
 @media (max-width: 400px) {
   .autores-grid {
     grid-template-columns: 1fr;

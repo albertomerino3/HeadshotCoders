@@ -2,16 +2,24 @@
    ==========================================================================
    LIQUID GLASS PREMIUM THEME - GLOBAL STYLES
    ========================================================================== 
+   File: styles.css
+   Description: Defines global CSS variables, resets, and utility classes 
+   to maintain a consistent theme across the application.
 */
 
 :root {
+  /* Color Palette */
   --primary: #6366f1;
   --primary-light: #818cf8;
   --accent: #22d3ee;
   --bg-deep: #030712;
+  
+  /* Glassmorphism Variables */
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.05);
+  
+  /* Typography & Layout */
   --text-main: #f8fafc;
   --text-dim: #94a3b8;
   --error: #f43f5e;
@@ -20,7 +28,7 @@
   --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Reset & Base */
+/* Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -38,7 +46,7 @@ body {
 
 /* 
    DYNAMIC LIQUID BACKGROUND 
-   Uses floating orbs for organic depth 
+   Description: Creates an immersive organic feel using floating orbs.
 */
 .bg-gradient {
   position: fixed;
@@ -100,6 +108,7 @@ body {
 
 /* 
    GLASS COMPONENT SYSTEM 
+   Description: Standard glassmorphism card styling used throughout the app.
 */
 .glass-card {
   background: var(--glass-bg);
@@ -120,8 +129,7 @@ body {
   box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
 }
 
-/* Titles */
-/* Card Refinements */
+/* Card Header Components */
 .card-header {
   display: flex;
   flex-direction: column;
@@ -129,6 +137,7 @@ body {
   margin-bottom: 2.5rem;
 }
 
+/* UI Elements: Badges */
 .badge {
   background: rgba(99, 102, 241, 0.1);
   color: var(--primary-light);
@@ -142,17 +151,19 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Typography: Headings */
 h2 {
   font-size: 2.5rem;
   font-weight: 800;
   text-align: center;
-  margin-bottom: 0; /* Adjusted for card-header */
+  margin-bottom: 0;
   letter-spacing: -0.05em;
   background: linear-gradient(to right, #ffffff, #94a3b8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Status Classes */
 .success {
   background: rgba(34, 211, 238, 0.1) !important;
   color: var(--accent) !important;
@@ -167,7 +178,7 @@ h2 {
   margin-top: 8px;
 }
 
-/* Forms Refined */
+/* Form Styling */
 .form-group {
   margin-bottom: 1.5rem;
 }

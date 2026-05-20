@@ -1,24 +1,35 @@
+<!-- 
+  Template for the Book Registration Form.
+  Provides inputs for title, genre, and author selection.
+-->
 <div class="container small-container">
   <div class="glass-card">
+    <!-- Form Header -->
     <div class="card-header">
       <span class="badge">Catálogo</span>
       <h2>Nuevo Libro</h2>
     </div>
 
+    <!-- Reactive Form for creating a book -->
     <form [formGroup]="libroForm" (ngSubmit)="guardarLibro()">
+      
+      <!-- Book Title Input Section -->
       <div class="form-group">
         <label>Título del Libro</label>
         <input type="text" formControlName="titulo" class="form-control" placeholder="Ej: La casa de los espíritus">
+        <!-- Validation Error Message for Title -->
         <div *ngIf="libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched" class="mensaje error">
           El título debe tener al menos 3 caracteres.
         </div>
       </div>
 
+      <!-- Book Genre Input Section -->
       <div class="form-group">
         <label>Género Literario</label>
         <input type="text" formControlName="genero" class="form-control" placeholder="Ej: Realismo Mágico">
       </div>
 
+      <!-- Author Selection Section -->
       <div class="form-group">
         <label>Asignar Autor</label>
         <select formControlName="autorId" class="form-control">
@@ -29,9 +40,11 @@
         </select>
       </div>
 
+      <!-- Form Submission Button -->
       <button type="submit" [disabled]="libroForm.invalid" class="btn">Añadir al Inventario</button>
     </form>
 
+    <!-- Feedback message displayed after submission -->
     <div *ngIf="mensaje()" class="mensaje success">
       📚 {{ mensaje() }}
     </div>

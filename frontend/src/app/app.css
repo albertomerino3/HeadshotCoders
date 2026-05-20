@@ -1,3 +1,10 @@
+/* 
+   ==========================================================================
+   ROOT COMPONENT STYLES (app.css)
+   ========================================================================== 
+*/
+
+/* Navigation Bar Styles: Glassmorphism effect and fixed positioning */
 .navbar {
   position: fixed;
   top: 20px;
@@ -20,6 +27,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* Navbar Title Styles */
 .navbar h1 {
   font-size: 1.1rem;
   font-weight: 800;
@@ -29,11 +37,13 @@
   white-space: nowrap;
 }
 
+/* Links Container */
 .links {
   display: flex;
   gap: 8px;
 }
 
+/* Individual Link Styles */
 .links a {
   text-decoration: none;
   color: var(--text-dim);
@@ -44,17 +54,20 @@
   transition: all 0.3s ease;
 }
 
+/* Link Hover State */
 .links a:hover {
   color: white;
   background: rgba(255, 255, 255, 0.05);
 }
 
+/* Active Link State */
 .links a.active {
   color: white;
   background: var(--primary);
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
+/* Responsive Design for Small Screens */
 @media (max-width: 600px) {
   .navbar {
     min-width: 95%;

@@ -1,27 +1,39 @@
+<!-- 
+  Template for the Author Registration Form.
+  Provides inputs for author name and nationality.
+-->
 <div class="container small-container">
   <div class="glass-card">
+    <!-- Form Header -->
     <div class="card-header">
       <span class="badge">Nuevo</span>
       <h2>Registrar Autor</h2>
     </div>
 
+    <!-- Reactive Form for registering an author -->
     <form [formGroup]="autorForm" (ngSubmit)="guardarAutor()">
+      
+      <!-- Author Name Input Section -->
       <div class="form-group">
         <label>Nombre Completo</label>
         <input type="text" formControlName="nombre" class="form-control" placeholder="Ej: Isabel Allende">
+        <!-- Validation Error Message for Name -->
         <div *ngIf="autorForm.get('nombre')?.invalid && autorForm.get('nombre')?.touched" class="mensaje error">
           El nombre debe tener al menos 3 caracteres.
         </div>
       </div>
 
+      <!-- Author Nationality Input Section -->
       <div class="form-group">
         <label>Nacionalidad</label>
         <input type="text" formControlName="nacionalidad" class="form-control" placeholder="Ej: Chilena">
       </div>
 
+      <!-- Form Submission Button -->
       <button type="submit" [disabled]="autorForm.invalid" class="btn">Dar de Alta Autor</button>
     </form>
 
+    <!-- Feedback message displayed after submission -->
     <div *ngIf="mensaje()" class="mensaje success">
       ✨ {{ mensaje() }}
     </div>

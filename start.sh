@@ -1,25 +1,34 @@
 #!/bin/bash
 
-# --- Script de inicio para Linux y macOS ---
+# ==========================================================================
+# Script de Inicio Universal (Linux / macOS)
+# Propósito: Automatiza el arranque completo del sistema (Backend + Frontend)
+# ==========================================================================
 
-echo "🚀 Iniciando Sistema de Biblioteca..."
+echo "🚀 Iniciando Sistema de Biblioteca (Headshot Coders)..."
 
-# 1. Instalar dependencias del frontend si no existen
+# 1. Gestión de dependencias del Frontend
+# Si la carpeta node_modules no existe, se ejecuta la instalación automática
 if [ ! -d "frontend/node_modules" ]; then
-    echo "📦 Instalando dependencias del frontend..."
+    echo "📦 No se encontró node_modules. Instalando dependencias (esto puede tardar)..."
     cd frontend && npm install && cd ..
 fi
 
-# 2. Iniciar el Backend (Spring Boot) en segundo plano
-echo "☕ Iniciando Backend..."
+# 2. Arranque del Backend (Spring Boot)
+# Se ejecuta en segundo plano (&) para permitir el arranque del frontend en la misma terminal
+echo "☕ Levantando el servidor Backend (Spring Boot)..."
 cd backend/demo
 chmod +x mvnw
 ./mvnw spring-boot:run &
-BACKEND_PID=$!
+BACKEND_PID=$! # Capturamos el ID del proceso para gestionarlo al cerrar
 cd ../..
 
-# 3. Iniciar el Frontend (Angular)
-echo "🅰️  Iniciando Frontend... (El link aparecerá abajo)"
+# 3. Arranque del Frontend (Angular)
+# Se lanza en primer plano para mostrar los logs de compilación y la URL de acceso
+echo "🅰️  Levantando el servidor Frontend (Angular)..."
+echo "💡 El link de acceso (http://localhost:4200) aparecerá en los logs de abajo."
 cd frontend
-# Ejecutamos el frontend en primer plano para ver su salida directamente
 npm start
+
+# Nota: Al cerrar esta terminal con Ctrl+C, se recomienda usar ./stop.sh
+# para asegurar que los puertos queden libres.

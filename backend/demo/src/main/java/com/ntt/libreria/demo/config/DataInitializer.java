@@ -1,3 +1,7 @@
+/**
+ * Clase de configuración para inicializar datos en la base de datos.
+ * Esta clase asegura que la base de datos tenga datos iniciales para propósitos de prueba y demostración.
+ */
 package com.ntt.libreria.demo.config;
 
 import com.ntt.libreria.demo.model.Autor;
@@ -8,9 +12,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * DataInitializer proporciona un bean {@link CommandLineRunner} que puebla la base de datos
+ * con autores y libros iniciales si la base de datos está actualmente vacía.
+ */
 @Configuration
 public class DataInitializer {
 
+    /**
+     * Inicializa la base de datos con autores y libros predeterminados.
+     * Este método se ejecuta al iniciar la aplicación.
+     *
+     * @param autorRepository El repositorio para gestionar entidades {@link Autor}.
+     * @param libroRepository El repositorio para gestionar entidades {@link Libro}.
+     * @return Un {@link CommandLineRunner} que realiza la inicialización de datos.
+     */
     @Bean
     public CommandLineRunner initData(AutorRepository autorRepository, LibroRepository libroRepository) {
         return args -> {

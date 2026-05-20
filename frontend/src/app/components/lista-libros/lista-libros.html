@@ -1,19 +1,30 @@
+<!-- 
+  Main template for the Author and Book List component.
+  Displays a grid of authors, each containing their respective list of books.
+-->
 <div class="container">
   <h2>Biblioteca Digital</h2>
 
+  <!-- Grid container for author cards -->
   <div class="autores-grid">
+    <!-- Iterate over authors using the autores signal -->
     <div *ngFor="let autor of autores()" class="glass-card autor-card">
+      
+      <!-- Author header information -->
       <div class="autor-info">
         <span class="nacionalidad">{{ autor.nacionalidad }}</span>
         <h3>{{ autor.nombre }}</h3>
       </div>
       
+      <!-- List of books for the current author -->
       <div class="libros-container">
+        <!-- Iterate over the author's books -->
         <div *ngFor="let libro of autor.libros" class="libro-item">
           <span class="titulo">{{ libro.titulo }}</span>
           <span class="genero">{{ libro.genero }}</span>
         </div>
         
+        <!-- Empty state message if author has no books -->
         <div *ngIf="!autor.libros?.length" class="no-libros">
           No hay libros registrados para este autor.
         </div>

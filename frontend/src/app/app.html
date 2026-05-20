@@ -1,12 +1,21 @@
+<!-- 
+  File: app.html
+  Description: Main layout template for the application root component.
+  Includes the navigation bar and the main content area where routed components are rendered.
+-->
+
+<!-- Navigation Bar: Provides access to the different sections of the application -->
 <nav class="navbar">
   <h1>Gestión de Biblioteca</h1>
   <div class="links">
+    <!-- Links to navigate between the book list, author form, and book form -->
     <a routerLink="/lista" routerLinkActive="active">Ver Lista</a>
     <a routerLink="/nuevo-autor" routerLinkActive="active">Añadir Autor</a>
     <a routerLink="/nuevo-libro" routerLinkActive="active">Añadir Libro</a>
   </div>
 </nav>
 
+<!-- Main Content Area: Where the routed components will be injected -->
 <main>
   <router-outlet></router-outlet>
 </main>

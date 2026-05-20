@@ -1,10 +1,18 @@
+<!-- 
+  Template for the Book Feature List.
+  Displays a table containing all books in the inventory.
+-->
 <div class="container mt-4">
   <h2>Catálogo de Libros</h2>
+  
+  <!-- Action button to navigate to the book creation form -->
   <button routerLink="/nuevo" class="btn btn-primary mb-3">Añadir Libro</button>
 
+  <!-- Loading state indicator -->
   @if (loading()) {
     <p>Cargando datos desde el backend en Spring...</p>
   } @else {
+    <!-- Table of books -->
     <table class="table">
       <thead>
         <tr>
@@ -14,6 +22,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Iterate over the list of books using a signal -->
         @for (libro of libros(); track libro.id) {
           <tr>
             <td>{{ libro.titulo }}</td>
@@ -21,6 +30,7 @@
             <td>{{ libro.autorId }}</td>
           </tr>
         } @empty {
+          <!-- Empty state message displayed when no books are found -->
           <tr>
             <td colspan="3" class="text-center">No hay libros disponibles.</td>
           </tr>
