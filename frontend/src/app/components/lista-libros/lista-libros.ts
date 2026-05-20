@@ -1,31 +1,28 @@
-import { Component, OnInit, signal } from '@angular/core'; // 1. Añadimos OnInit y signal
-import { LibroService } from '../../../core/services/libro.service';
-import { Libro } from '../../shared/models/libro.model'; // 2. Importamos el modelo también
+import { Component, OnInit, signal, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BibliotecaService } from '../../core/services/biblioteca.service';
+import { Autor } from '../../shared/models/biblioteca.model';
 
 @Component({
   selector: 'app-lista-libros',
-  standalone: true, // Requisito obligatorio: Standalone Component
-  imports: [], // Como usamos el nuevo @for de Angular 21, esto puede ir vacío
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './lista-libros.html',
   styleUrl: './lista-libros.css',
 })
-export class ListaLibrosComponent implements OnInit { // Cambiado a ListaLibrosComponent por buena práctica
+export class ListaLibros {
+  private bibliotecaService = inject(BibliotecaService);
 
   // Requisito obligatorio: Uso de Signals para el estado
-  libros = signal<Libro[]>([]);
-
-  // Inyectamos tu servicio real en el constructor
-  constructor(private libroService: LibroService) {}
+  autores = signal<Autor[]>([]);
 
   ngOnInit(): void {
     // Requisito obligatorio: Llamada a la API usando el Observable
-    this.libroService.getLibros().subscribe({
+    this.bibliotecaService.getAutores().subscribe({
       next: (data) => {
-        this.libros.set(data); // Guardamos los libros en el Signal
+        this.autores.set(data);
       },
-      error: (err) => {
-        console.error('Error al traer los libros del backend:', err);
-      }
+      error: (err) => console.error('Error al traer datos:', err)
     });
   }
 }

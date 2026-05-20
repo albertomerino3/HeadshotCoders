@@ -1,16 +1,9 @@
 import { Routes } from '@angular/router';
+import { ListaLibros } from './components/lista-libros/lista-libros';
+import { FormularioLibro } from './components/formulario-libro/formulario-libro';
 
 export const routes: Routes = [
-  {
-    path: '',
-    loadComponent: () => import('./features/libro-list/libro-list.component').then(m => m.LibroListComponent)
-  },
-  {
-    path: 'nuevo',
-    loadComponent: () => import('./features/libro-form/libro-form.component').then(m => m.LibroFormComponent)
-  },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  { path: '', redirectTo: 'lista', pathMatch: 'full' },
+  { path: 'lista', component: ListaLibros },
+  { path: 'nuevo', component: FormularioLibro }
 ];

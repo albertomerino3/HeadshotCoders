@@ -1,1 +1,14 @@
-<p>lista-libros works!</p>
+<div class="container">
+  <h2>Lista de Biblioteca (Autores y Libros)</h2>
+
+  <div *ngFor="let autor of autores()" class="autor-card">
+    <h3>{{ autor.nombre }} ({{ autor.nacionalidad }})</h3>
+    
+    <ul>
+      <li *ngFor="let libro of autor.libros">
+        <strong>{{ libro.titulo }}</strong> - {{ libro.genero }}
+      </li>
+    </ul>
+    <p *ngIf="!autor.libros?.length">No hay libros registrados para este autor.</p>
+  </div>
+</div>

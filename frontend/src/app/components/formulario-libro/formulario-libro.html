@@ -1,1 +1,32 @@
-<p>formulario-libro works!</p>
+<div class="container">
+  <h2>Añadir Nuevo Libro</h2>
+
+  <form [formGroup]="libroForm" (ngSubmit)="guardarLibro()">
+    <div class="form-group">
+      <label>Título:</label>
+      <input type="text" formControlName="titulo" class="form-control">
+      <small *ngIf="libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched" class="error">
+        El título es obligatorio (mín. 3 caracteres).
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Género:</label>
+      <input type="text" formControlName="genero" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Autor:</label>
+      <select formControlName="autorId" class="form-control">
+        <option value="">Selecciona un autor</option>
+        <option *ngFor="let autor of autores()" [value]="autor.id">
+          {{ autor.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="libroForm.invalid" class="btn">Guardar Libro</button>
+  </form>
+
+  <p *ngIf="mensaje()" class="mensaje">{{ mensaje() }}</p>
+</div>

@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<nav class="navbar">
+  <h1>Gestión de Biblioteca</h1>
+  <div class="links">
+    <a routerLink="/lista" routerLinkActive="active">Ver Lista</a>
+    <a routerLink="/nuevo" routerLinkActive="active">Añadir Libro</a>
+  </div>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
