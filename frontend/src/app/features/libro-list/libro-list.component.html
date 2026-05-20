@@ -7,18 +7,23 @@
   } @else {
     <table class="table">
       <thead>
-        <tr><th>Título</th><th>Autor</th><th>ISBN</th><th>Precio</th></tr>
+        <tr>
+          <th>Título</th>
+          <th>Género</th>
+          <th>ID Autor</th>
+        </tr>
       </thead>
       <tbody>
         @for (libro of libros(); track libro.id) {
           <tr>
             <td>{{ libro.titulo }}</td>
-            <td>{{ libro.autor }}</td>
-            <td>{{ libro.isbn }}</td>
-            <td>{{ libro.precio | currency:'EUR' }}</td>
+            <td>{{ libro.genero }}</td>
+            <td>{{ libro.autorId }}</td>
           </tr>
         } @empty {
-          <tr><td colspan="4">No hay libros disponibles.</td></tr>
+          <tr>
+            <td colspan="3" class="text-center">No hay libros disponibles.</td>
+          </tr>
         }
       </tbody>
     </table>

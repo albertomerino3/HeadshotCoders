@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { LibroService } from '../../core/services/libro.service';
+import { LibroService } from '../../../core/services/libro.service';
 
 @Component({
   selector: 'app-libro-form',
@@ -24,14 +25,18 @@ export class LibroFormComponent {
   });
 
   onSubmit(): void {
-    if (this.libroForm.valid) {
-      this.libroService.createLibro(this.libroForm.value).subscribe({
-        next: () => {
-          alert('¡Libro guardado con éxito en Spring Boot!');
-          this.router.navigate(['/']);
-        },
-        error: (err) => console.error('Error al guardar:', err)
-      });
-    }
+  if (this.libroForm.valid) {
+    this.libroService.createLibro(this.libroForm.value).subscribe({
+      next: () => {
+        alert('¡Libro guardado con éxito en Spring Boot!');
+        this.router.navigate(['/']);
+      },
+      // Tipamos 'err' como HttpErrorResponse
+      error: (err: HttpErrorResponse) => {
+        console.error('Status del backend:', err.status);
+        console.error('Mensaje del backend:', err.message);
+      }
+    });
+  }
   }
 }
